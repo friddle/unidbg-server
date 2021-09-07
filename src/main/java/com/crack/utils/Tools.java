@@ -1,12 +1,9 @@
 package com.crack.utils;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-public class tools {
+public class Tools {
 
     public static String encodeUrl(String value) {
         return encodeUrl(value, "UTF-8");
