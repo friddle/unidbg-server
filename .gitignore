@@ -3,6 +3,15 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+lib/*
+.idea/*
+lib_so/*
+.gradle/*
+gradle/*
+*.apk
+*.so
+tmp/*
+buildSrc/.gradle/*
 
 ### STS ###
 .apt_generated
@@ -39,6 +48,7 @@ target/
 *.zip
 *.tar
 *.tar.gz
+*.apk
 
 # system ignore
 .DS_Store

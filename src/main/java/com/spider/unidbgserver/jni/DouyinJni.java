@@ -18,14 +18,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DouyinJni extends AbstractJni {
-    private static final String SO_PATH = "/Users/chennan/javaproject/unidbg-server/src/main/resources/example_binaries/libcms.so";
+    private static final String SO_PATH = "./libcms.so";
 
     static {
-        String soPath = "example_binaries/libcms.so";
+        String soPath = "./libcms.so";
         ClassPathResource classPathResource = new ClassPathResource(soPath);
         try {
             InputStream inputStream = classPathResource.getInputStream();
-            Files.copy(inputStream, Paths.get("./libcms.so"), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(inputStream, Paths.get("./tmp/libcms.so"), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -38,7 +38,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class DouyinSign extends AbstractJni implements IOResolver {
 
-    private static String SO_PATH = "/Users/chennan/javaproject/unidbg-server/src/main/resources/example_binaries/libcms.so";
+    private static String SO_PATH = "lib_so/libcms.so";
     private final AndroidEmulator emulator;
     private final Module module;
     private final VM vm;
@@ -46,10 +46,9 @@ public class DouyinSign extends AbstractJni implements IOResolver {
     private final DvmClass nativeClazz;
 
     static {
-
         //防止打成jar包的时候找不到文件
-        String soPath = "example_binaries/libcms.so";
-        String appPath = "example_binaries/douyin10_6.apk";
+        String soPath = "libcms.so";
+        String appPath = "douyin10_6.apk";
         ClassPathResource classPathResource = new ClassPathResource(soPath);
         ClassPathResource appPathResource = new ClassPathResource(appPath);
 
@@ -58,9 +57,9 @@ public class DouyinSign extends AbstractJni implements IOResolver {
 
         try {
             InputStream inputStream = classPathResource.getInputStream();
-            Files.copy(inputStream, Paths.get("./libcms.so"), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(inputStream, Paths.get("./tmp/libcms.so"), StandardCopyOption.REPLACE_EXISTING);
             InputStream appinputStream = appPathResource.getInputStream();
-            Files.copy(appinputStream, Paths.get("./douyin10_6.apk"), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(appinputStream, Paths.get("./tmp/douyin10_6.apk"), StandardCopyOption.REPLACE_EXISTING);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -75,14 +74,14 @@ public class DouyinSign extends AbstractJni implements IOResolver {
                 .setProcessName("com.ss.android.ugc.aweme").build();
         Memory memory = emulator.getMemory(); // 模拟器的内存操作接口
         memory.setLibraryResolver(new AndroidResolver(23));// 设置系统类库解析
-        vm = emulator.createDalvikVM(new File("./douyin10_6.apk")); // 创建Android虚拟机
+        vm = emulator.createDalvikVM(new File("./tmp/douyin10_6.apk")); // 创建Android虚拟机
         new AndroidModule(emulator,vm).register(memory);
 
         vm.setJni(this);
         vm.setVerbose(true);// 设置是否打印Jni调用细节
 
         // 自行修改文件路径,loadLibrary是java加载so的方法
-        DalvikModule dm = vm.loadLibrary(new File("./libcms.so"), false); // 加载libcms.so到unicorn虚拟内存，加载成功以后会默认调用init_array等函数
+        DalvikModule dm = vm.loadLibrary(new File("./tmp/libcms.so"), false); // 加载libcms.so到unicorn虚拟内存，加载成功以后会默认调用init_array等函数
         dm.callJNI_OnLoad(emulator);// 手动执行JNI_OnLoad函数
         module = dm.getModule();// 加载好的libcms.so对应为一个模块
 
