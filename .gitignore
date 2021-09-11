@@ -12,7 +12,7 @@ gradle/*
 *.so
 tmp/*
 buildSrc/.gradle/*
-
+**/.gradle
 ### STS ###
 .apt_generated
 .classpath
