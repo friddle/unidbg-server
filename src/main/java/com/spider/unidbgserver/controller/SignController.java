@@ -4,12 +4,14 @@ import com.alibaba.fastjson.JSON;
 import com.crack.DouyinSign;
 import com.spider.unidbgserver.service.DouyinSignService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.Map;
 
+@Profile("douyin")
 @RestController
 @RequestMapping("/unidbg")
 public class SignController {
@@ -27,6 +29,9 @@ public class SignController {
 
     }
 
+
+    @Autowired(required = false)
+    DouyinSignService douyinSignService;
     @RequestMapping(value = "dySignNext", method = {RequestMethod.GET, RequestMethod.POST})
     public String dySignNext(@RequestParam("url") String url) {
         synchronized (this) {
@@ -39,7 +44,5 @@ public class SignController {
     }
 
 
-    @Resource
-    private DouyinSignService douyinSignService;
 
 }

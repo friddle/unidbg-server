@@ -3,6 +3,7 @@ package com.spider.unidbgserver.service;
 import com.github.unidbg.linux.android.dvm.DalvikModule;
 import com.github.unidbg.linux.android.dvm.array.ByteArray;
 import com.spider.unidbgserver.vm.DouyinVM;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
+@Profile("douyin")
 public class DouyinSignService {
 
     public Map<String, String> crack(String url) {

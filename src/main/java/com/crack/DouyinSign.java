@@ -35,7 +35,7 @@ import org.springframework.stereotype.Component;
 
 
 
-@Component
+//@Component
 public class DouyinSign extends AbstractJni implements IOResolver {
 
     private static String SO_PATH = "lib_so/libcms.so";

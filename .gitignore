@@ -9,6 +9,7 @@ lib_so/*
 .gradle/*
 gradle/*
 *.apk
+out/*
 *.so
 tmp/*
 buildSrc/.gradle/*

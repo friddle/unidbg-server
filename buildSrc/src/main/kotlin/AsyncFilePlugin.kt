@@ -48,7 +48,7 @@ open class AsyncFilePlugin : Plugin<Project> {
         val fileStream= FileOutputStream(file)
         val rsp=client.newCall(request).execute()
         val bodyStream=rsp.body?.byteStream()
-        bodyStream?.transferTo(fileStream)
+        bodyStream?.copyTo(fileStream)
     }
 
 
