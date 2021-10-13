@@ -25,7 +25,7 @@ java -jar -Dserver.port=8080 xxx.jar
 原版本的抖音没有跑起来。应该是原作者没有更新    
 Java11版本以上要--add-exports java.base/sun.security.pkcs=ALL-UNNAMED --illegal-access   
 
-#使用
+# 某东版本使用
 `http://localhost:9090/unidbg/jdSign?functionId=asynInteface&body=%7B%22intefaceType%22%3A%22asynIntefaceType%22%2C%22skuId%22%3A%22100008667315%22%7D&uuid=99001184062989-f460e22c02fa&platform=android&version=9.2.2`
 output demo:`st=1607417268979&sign=c57e8ffcd59827fbe36db57bb53440c3&sv=110`
 
